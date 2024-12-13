@@ -36,7 +36,7 @@ public class DescribesRepository extends BaseRepository<Describes>{
     public List<Tag> getTags(String id) throws Exception {
         String sql = "SELECT DISTINCT t.* FROM TAG t INNER JOIN DESCRIBES d ON t.Name = d.Tag_name WHERE d.Meme_id = '" + id +"';";
         List<Tag> tags = this.getDatabaseConnection().query(sql, BeanPropertyRowMapper.newInstance(Tag.class));
-        if (tags.size() == 1) {
+        if (tags.size() >= 1) {
             return tags;
         }
         throw new Exception();
